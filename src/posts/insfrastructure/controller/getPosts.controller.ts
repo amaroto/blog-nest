@@ -1,7 +1,12 @@
-import { Controller } from '@nestjs/common';
-import { PostsService } from '../services/posts.service';
+import { Controller, Get } from '@nestjs/common';
+import { GetPosts } from 'src/posts/application/getPosts';
 
 @Controller('posts')
 export class GetPostsController {
-  constructor(private postsService: PostsService) {}
+  constructor(private getPosts: GetPosts) {}
+
+  @Get()
+  async execute() {
+    return this.getPosts.execute();
+  }
 }
