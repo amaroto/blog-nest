@@ -1,13 +1,13 @@
-import { PostInterface } from "./post.interface";
+import { IPost } from "./post.interface";
 
-export class Post implements PostInterface{
+export class Post implements IPost{
   readonly id: string;
-  name: string;
-  description: string;
-  metadata: object;
-  updatedAt: Date;
-  createdAt: Date;
-  deletedAt: Date | null;
+  readonly name: string;
+  readonly description: string;
+  readonly metadata: object;
+  readonly updatedAt: Date;
+  readonly createdAt: Date;
+  readonly deletedAt: Date | null;
 
   constructor(
     id: string,

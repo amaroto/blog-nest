@@ -1,10 +1,10 @@
-import { PostInterface as PostI } from "./post.interface";
+import { IPost } from "./post.interface";
 
 export class Posts{
 
-  data: Array<PostI>;
+  data: Array<IPost>;
 
-  constructor(posts: Array<PostI>) {
+  constructor(posts: Array<IPost>) {
     this.data = posts;
   }
 

@@ -6,7 +6,7 @@ import { PostsService } from '../insfrastructure/posts.service';
 export class GetPosts {
     constructor(private postsService: PostsService) {}
 
-    async execute(): Promise<Posts> {
-        return this.postsService.getPosts();
+    async execute(): Promise<Posts|any> {
+        return this.postsService.search();
     }
 }

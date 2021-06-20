@@ -1,12 +1,17 @@
 import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+
+import { Model } from 'mongoose';
+
 import { Post } from 'src/posts/domain/post';
-import { POSTS } from 'src/posts/domain/mocks/posts.mock';
 import { Posts } from '../domain/posts';
-import { PostServicesInterface } from '../domain/postServices.interface';
+import { IPostServices } from '../domain/postServices.interface';
+import { Post as PostSchema, PostDocument } from './mongoose/post.schema';
 
 @Injectable()
-export class PostsService implements PostServicesInterface {
-    private posts = new Posts(POSTS);
+export class PostsService implements IPostServices {
+
+    constructor(@InjectModel(PostSchema.name) private readonly postModel: Model<PostDocument>) {}
 
     private fromRaw (data: Array<any>) {
         return new Post(
@@ -20,23 +25,23 @@ export class PostsService implements PostServicesInterface {
         );
     }
 
-    getPosts(): Posts {
-        return this.posts;
+    search(): (Posts | any) {
+        return this.postModel.find().exec();
     }
     
-    getPost(id: string): Post {
-        return this.posts.data[0];
+    find(id: string): (Post | any) {
+        return this.postModel.findById(id).exec();
     }
 
-    deletePost(): void {
+    delete(): void {
         throw new Error('Method not implemented.');
     }
 
-    createPost(): void {
+    create(): void {
         throw new Error('Method not implemented.');
     }
 
-    updatePost(): void {
+    update(): void {
         throw new Error('Method not implemented.');
     }
 }
