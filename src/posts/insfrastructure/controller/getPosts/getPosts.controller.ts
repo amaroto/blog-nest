@@ -6,7 +6,8 @@ export class GetPostsController {
   constructor(private getPosts: GetPosts) {}
 
   @Get()
-  async execute() {
-    return this.getPosts.execute();
+  async execute(): Promise<Object> {
+    const posts = await this.getPosts.execute();
+    return posts.data;
   }
 }

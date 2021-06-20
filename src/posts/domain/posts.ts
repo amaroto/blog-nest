@@ -2,10 +2,10 @@ import { PostInterface as PostI } from "./post.interface";
 
 export class Posts{
 
-  posts: Array<PostI>;
+  data: Array<PostI>;
 
   constructor(posts: Array<PostI>) {
-    this.posts = posts;
+    this.data = posts;
   }
 
 }

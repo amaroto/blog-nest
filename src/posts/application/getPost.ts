@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
-import { Posts } from '../domain/posts';
+import { Post } from '../domain/post';
 import { PostsService } from '../insfrastructure/posts.service';
 
 @Injectable()
-export class GetPosts {
+export class GetPost {
     constructor(private postsService: PostsService) {}
 
-    async execute(): Promise<Posts> {
-        return this.postsService.getPosts();
+    async execute(id: string): Promise<Post> {
+        return this.postsService.getPost(id);
     }
 }
